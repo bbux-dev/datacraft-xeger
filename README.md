@@ -13,23 +13,26 @@ example below shows how to register custom types for different country phone num
 
 ```python
 import datacraft
-import datacraft_xeger._impl as xeger
+import datacraft_xeger.suppliers as xeger
 
 phone_patterns = {
-    #type_name: pattern
+    # type_name: pattern
     'uk-phone': r'\+44 \d{4} \d{6}',
     'aus-phone': r'\+61 4\d{2} \d{3} \d{3}',
     'nz-phone': r'\+64 \d{2} \d{4} \d{4}',
     # ...
 }
 
+
 @datacraft.registry.types('uk-phone')
 def _custom_regex_uk_phone(spec, loader):
     return xeger.xeger_supplier(phone_patterns['uk-phone'])
 
+
 @datacraft.registry.types('aus-phone')
 def _custom_regex_aus_phone(spec, loader):
     return xeger.xeger_supplier(phone_patterns['aus-phone'])
+
 
 @datacraft.registry.types('nz-phone')
 def _custom_regex_nz_phone(spec, loader):

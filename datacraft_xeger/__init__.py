@@ -9,8 +9,7 @@ _log = logging.getLogger(__name__)
 
 def load_custom():
     import datacraft
-    from . import _impl as impl
-    _log.info('Loading xeger custom datacraft types')
+    from . import suppliers
 
     @datacraft.registry.schemas(_XEGER_KEY)
     def _get_xeger_schema():
@@ -24,4 +23,4 @@ def load_custom():
             raise datacraft.SpecException(
                 'required data element not defined for ' + _XEGER_KEY + ' type : ' + json.dumps(field_spec))
 
-        return impl.xeger_supplier(field_spec['data'])
+        return suppliers.xeger_supplier(field_spec['data'])

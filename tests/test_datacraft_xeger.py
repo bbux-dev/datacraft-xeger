@@ -1,4 +1,4 @@
-import datacraft_xeger._impl as impl
+import datacraft_xeger.suppliers as impl
 
 
 def test_basic():

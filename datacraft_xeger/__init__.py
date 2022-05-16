@@ -1,6 +1,8 @@
 import json
 import logging
 
+import datacraft
+from . import suppliers
 
 _XEGER_KEY = 'xeger'
 
@@ -8,8 +10,6 @@ _log = logging.getLogger(__name__)
 
 
 def load_custom():
-    import datacraft
-    from . import suppliers
 
     @datacraft.registry.schemas(_XEGER_KEY)
     def _get_xeger_schema():

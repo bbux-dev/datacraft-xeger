@@ -10,11 +10,20 @@ _log = logging.getLogger(__name__)
 
 
 def load_custom():
-
     @datacraft.registry.schemas(_XEGER_KEY)
     def _get_xeger_schema():
         """ get the schema for xeger type """
-        return datacraft.schemas.load(_XEGER_KEY)
+        return {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "https://github.com/bbux-dev/datacraft-xeger/schemas/xeger.schema.json",
+            "type": "object",
+            "required": ["type", "data"],
+            "properties": {
+                "type": {"type": "string", "pattern": "^xeger$"},
+                "data": {"type": "string"},
+                "additionalProperties": False
+            }
+        }
 
     @datacraft.registry.types(_XEGER_KEY)
     def _configure_xeger_supplier(field_spec, _):

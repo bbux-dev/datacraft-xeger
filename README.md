@@ -5,8 +5,36 @@ Custom plugin for [datacraft](https://datacraft.readthedocs.io/en/latest) to gen
 Uses the [rstr](https://github.com/leapfrogonline/rstr) package. `xeger` is regex backwards. Inspiration from the 
 original Java Package [xeger](https://code.google.com/archive/p/xeger/).
 
-Custom Regex Types
-------------------
+## Usage in Specs
+
+You can use the `xeger` as a type in your datacraft data specs. See example:
+
+```json
+{
+  "ssn":{
+    "type": "xeger",
+    "data": "\\d{3]-\\d{2}-\\d{4}"
+  }
+}
+```
+
+```shell
+$ datacraft -s xeger.json -i 3 --format json-pretty -x -l error
+[
+    {
+        "ssn": "322-81-1469"
+    },
+    {
+        "ssn": "697-21-8178"
+    },
+    {
+        "ssn": "340-78-5377"
+    }
+]
+```
+
+
+## Custom Regex Types
 
 Users can make use of the datacraft_xeger module to create custom datacraft value suppliers with regex patterns. The 
 example below shows how to register custom types for different country phone number patterns.
